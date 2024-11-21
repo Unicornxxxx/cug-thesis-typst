@@ -1,3 +1,5 @@
+#import "@preview/cuti:0.2.1": show-cn-fakebold
+
 #let 字号 = (
   初号: 42pt,
   小初: 36pt,

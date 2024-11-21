@@ -1,5 +1,5 @@
 #import "../../utils/indent.typ": indent
-#import "../../utils/style.typ": 字号, 字体
+#import "../../utils/style.typ": 字号, 字体, show-cn-fakebold
 #import "./cover.typ": thesis-info
 
 // 学术声明页
@@ -8,6 +8,7 @@
   anonymous: false,
   twoside: false,
 ) = {
+  show: show-cn-fakebold
   // 如果需要匿名则短路返回
   if anonymous {
     return
@@ -22,6 +23,7 @@
     text(
       font: 字体.黑体,
       size: 字号.三号,
+      weight: "bold",
       "中国地质大学（武汉）研究生学位论文原创性声明",
     ),
   )
@@ -67,6 +69,7 @@
     text(
       font: 字体.黑体,
       size: 字号.三号,
+      weight: "bold",
       "中国地质大学（武汉）研究生学位论文导师承诺书",
     ),
   )
@@ -110,6 +113,7 @@
     text(
       font: 字体.黑体,
       size: 字号.三号,
+      weight: "bold",
       "中国地质大学（武汉）学位论文使用授权书",
     ),
   )
@@ -153,12 +157,11 @@
     text(
       font: 字体.黑体,
       size: 字号.三号,
+      weight: "bold",
       "作者简历",
     ),
   )
   v(字号.五号 * 3.0)
-
-  
 
 }
 

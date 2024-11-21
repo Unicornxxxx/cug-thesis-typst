@@ -1,5 +1,5 @@
 // 建议在正式编辑论文时，采用 typst.app 中的已发布版本模板
-#import "@preview/modern-nju-thesis:0.3.4": documentclass, indent
+// #import "@preview/modern-nju-thesis:0.3.4": documentclass, indent
 
 // 仅供开发调试使用
 #import "/lib.typ": documentclass, indent
@@ -14,8 +14,8 @@
   fonts-display-page, cover, decl-page, abstract, abstract-en, bilingual-bibliography,
   outline-page, list-of-figures-tables, notation, acknowledgement,
 ) = documentclass(
-  anonymous: true,  // 盲审模式
-  twoside: true,  // 双面模式，会加入空白页，便于打印
+  anonymous: false,  // 盲审模式
+  twoside: false,  // 双面模式，会加入空白页，便于打印
   // 可自定义字体，先英文字体后中文字体，应传入「宋体」、「黑体」、「楷体」、「仿宋」、「等宽」
   // fonts: (楷体: ("Times New Roman", "FZKai-Z03S")),
   info: (

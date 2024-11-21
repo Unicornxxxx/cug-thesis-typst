@@ -1,6 +1,6 @@
 #import "../../utils/datetime-display.typ": datetime-display, datetime-en-display, datetime-zh-display
 #import "../../utils/justify-text.typ": justify-text
-#import "../../utils/style.typ": 字号, 字体
+#import "../../utils/style.typ": 字号, 字体, show-cn-fakebold
 
 // 研究生封面
 #let postgraduate-cover(
@@ -47,6 +47,7 @@
   // datetime-en-display: datetime-en-display,
   datetime-zh-display: datetime-zh-display,
 ) = {
+  show: show-cn-fakebold
   // 2.  对参数进行处理
   // 2.1 如果是字符串，则使用换行符将标题分隔为列表
   if type(info.title) == str {

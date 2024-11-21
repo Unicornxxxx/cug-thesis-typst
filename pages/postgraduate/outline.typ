@@ -1,6 +1,6 @@
 #import "@preview/outrageous:0.1.0"
 #import "../../utils/invisible-heading.typ": invisible-heading
-#import "../../utils/style.typ": 字号, 字体
+#import "../../utils/style.typ": 字号, 字体, show-cn-fakebold
 
 // 本科生目录生成
 #let postgraduate-outline(
@@ -27,6 +27,7 @@
   ..args,
 ) = {
   // 1.  默认参数
+  show: show-cn-fakebold
   fonts = 字体 + fonts
   if (title-text-args == auto) {
     title-text-args = (font: fonts.黑体, size: 字号.三号, weight: "bold")

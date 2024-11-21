@@ -1,4 +1,4 @@
-#import "../../utils/style.typ": 字号, 字体
+#import "../../utils/style.typ": 字号, 字体, show-cn-fakebold
 
 // 研究生中文摘要页
 #let postgraduate-abstract(
@@ -18,6 +18,7 @@
   body,
 ) = {
   // 1.  默认参数
+  show: show-cn-fakebold
   fonts = 字体 + fonts
   info = (
     title: ("基于 Typst 的", "中国地质大学学位论文"),
