@@ -11,7 +11,7 @@
   depth: 4,
   title: "目　　录",
   outlined: false,
-  title-vspace: 0pt,
+  title-vspace: 1em,
   title-text-args: auto,
   // 引用页数的字体，这里用于显示 Times New Roman
   reference-font: auto,
@@ -20,8 +20,8 @@
   font: auto,
   size: (字号.四号, 字号.小四, 字号.小四),
   // 垂直间距
-  vspace: (20pt, 20pt),
-  indent: (0pt, 1em, 2em),
+  vspace: (20pt-1em, 20pt-1em, 20pt-1em, 20pt-1em),
+  indent: (0pt, 1em, 2em,),
   // 全都显示点号
   fill: (auto,),
   ..args,
@@ -49,6 +49,7 @@
 
   {
     set align(center)
+    // set par(spacing: 1em)
     text(..title-text-args, title)
     // 标记一个不可见的标题用于目录生成
     invisible-heading(level: 1, outlined: outlined, title)
@@ -65,7 +66,6 @@
         font: font.at(calc.min(level, font.len()) - 1),
         size: size.at(calc.min(level, size.len()) - 1),
       )
-      // 计算缩进
       let indent-list = indent + range(level - indent.len()).map((it) => indent.last())
       let indent-length = indent-list.slice(0, count: level).sum()
       h(indent-length) + it

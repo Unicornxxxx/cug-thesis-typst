@@ -8,7 +8,6 @@
   anonymous: false,
   twoside: false,
   fonts: (:),
-  info: (:),
   // 其他参数
   keywords: (),
   abstract-title-weight: "bold",
@@ -17,26 +16,11 @@
   spacing: 20pt,
   body,
 ) = {
-  // 1.  默认参数
-  show: show-cn-fakebold
+  // 默认参数
+  show: show-cn-fakebold  // 中文加粗显示
   fonts = 字体 + fonts
-  info = (
-    title: ("基于 Typst 的", "中国地质大学学位论文"),
-    author: "张三",
-    grade: "20XX",
-    department: "某学院",
-    major: "某专业",
-    supervisor: ("李四", "教授"),
-    supervisor-ii: ("王五", "副教授"),
-  ) + info
 
-  // 2.  对参数进行处理
-  // 2.1 如果是字符串，则使用换行符将标题分隔为列表
-  if type(info.title) == str {
-    info.title = info.title.split("\n")
-  }
-
-  // 4.  正式渲染
+  // 正式渲染
   pagebreak(weak: true, to: if twoside { "odd" })
 
   [ 

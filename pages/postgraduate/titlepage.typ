@@ -1,128 +1,247 @@
-#import "/better-thesis/utils/datetime-display.typ": datetime-display
-#import "/better-thesis/utils/style.typ": 字号, 字体
+#import "../../utils/datetime-display.typ": datetime-zh-display
+#import "../../utils/justify-text.typ": justify-text
+#import "../../utils/style.typ": 字号, 字体, show-cn-fakebold
+#import "../../utils/anonymous-info.typ": anonymous-info
 
-// 扉页
-// 内容包括论文中英文题目、学生姓名、学号、院系、专业、指导教师（姓名及职称）等信息。
-#let titlepage(
+// 研究生封面
+#let postgraduate-titlepage(
+  // documentclass 传入的参数
+  anonymous: false,
+  twoside: false,
+  // fonts: (:),
   info: (:),
   // 其他参数
+  cover-meta-font: "宋体",
+  cover-meta-size: "三号", 
+  cover-title-font: "黑体",
+  cover-title-size: "二号", 
+  bold-info-keys: ("title", "school-name"),
+  bold-level: "bold",
   stoke-width: 0.5pt,
   min-title-lines: 2,
-  info-inset: (x: 0pt, bottom: 1pt),
-  info-key-width: 72pt,
-  info-key-font: "黑体",
-  info-value-font: "宋体",
-  column-gutter: -3pt,
-  row-gutter: 11.5pt,
+  min-reviewer-lines: 5,
+  info-inset: (bottom: -2pt),
+  // datetime-zh-display: datetime-zh-display,
 ) = {
-  assert(type(info.title) == array)
-  assert(type(info.author) == dictionary)
-
-  info.title = info.title + range(min-title-lines - info.title.len()).map((it) => "　")
-  if type(info.submit-date) == datetime {
-    info.submit-date = datetime-display(info.submit-date)
+  show: show-cn-fakebold
+  // 对参数进行处理
+  // 如果是字符串，则使用换行符将标题分隔为列表
+  if type(info.title) == str {
+    info.title = info.title.split("\n")
   }
+  if type(info.title-en) == str {
+    info.title-en = info.title-en.split("\n")
+  }
+  if type(info.department) == str {
+    info.department = info.department.split("\n")
+  }
+  // 根据 min-title-lines 和 min-reviewer-lines 填充标题和评阅人
+  // info.title = info.title + range(min-title-lines - info.title.len()).map((it) => "　")
+  // info.reviewer = info.reviewer + range(min-reviewer-lines - info.reviewer.len()).map((it) => "　")
+  // 处理日期
+  assert(type(info.submit-date) == datetime, message: "submit-date must be datetime.")
 
   // 内置辅助函数
-  let info-key(
-    font: 字体.at(info-key-font, default: "黑体"),
-    size: 字号.三号,
-    body,
+  let info-style(
+    body, 
+    weight: "regular",
+    font: 字体.at(cover-meta-font, default: 字体.宋体),
+    size: 字号.at(cover-meta-size, default: 字号.三号),
+    align-type: "default", // str(justify), str(default), left, right, center, 
   ) = {
     rect(
-      width: 100%,
-      inset: info-inset,
+      width: 100%, 
+      // inset: info-inset,
       stroke: none,
       text(
-        font: font,
-        size: size,
-        body,
-      ),
-    )
-  }
-
-  let info-value(
-    font: 字体.at(info-value-font, default: "宋体"),
-    size: 字号.三号,
-    key,
-    body,
-  ) = {
-    set align(center)
-    rect(
-      width: 100%,
-      inset: info-inset,
-      stroke: (bottom: stoke-width + black),
-      text(
-        font: font,
-        size: size,
-        bottom-edge: "descender",
-        body,
-      ),
-    )
-  }
-
-  let info-long-value(
-    font: 字体.at(info-value-font, default: "宋体"),
-    size: 字号.三号,
-    key,
-    body,
-  ) = {
-    grid.cell(colspan: 3,
-      info-value(
-        font: font,
-        size: size,
-        key,
-        body,
+        font: font, size: size, 
+        weight: weight,
+        if (align-type == "justify") {
+          justify-text(with-tail: true, body)
+        } else if (align-type == "default") {
+          body
+        } else {align(align-type, body)}
       )
     )
   }
 
-  let info-short-value(
-    font: 字体.at(info-value-font, default: "宋体"),
-    size: 字号.三号,
-    key,
-    body
+  let docname(
+    body, weight: "bold",
+    font: 字体.宋体,
+    size: 字号.一号,
+    leading-scale: 1.2,
   ) = {
-    info-value(
-      font: font,
-      size: size,
-      key,
-      body,
-    )
+    rect(
+      width: 100%,
+      stroke: none,
+      text(
+        font: font, size: size,
+        weight: weight,
+        par(body, leading: size * leading-scale)
+      )) 
   }
+  let docname-en = docname.with(font: 字体.宋体, size: 字号.三号, weight: "regular")
+  let title = docname.with(font: 字体.黑体, size: 字号.二号)
+  let title-en = docname-en.with(font: 字体.宋体, size: 字号.二号)
+  let address-en = docname-en
+  let anonymous-info = anonymous-info.with(anonymous: anonymous)
 
   // 正式渲染
-  v(30pt)
+  pagebreak(weak: true, to: if twoside { "odd" })
 
-  set align(center + horizon)
-  for part in info.title {
-    text(size: 字号.二号, font: 字体.黑体, weight: "bold")[ #part ]
-    linebreak()
-  }
-  v(2em)
-  for part-en in info.title-en {
-    text(size: 字号.二号, weight: "bold")[ #part-en ]
-    linebreak()
-  }
+  block(height: 1.38cm, grid(
+    columns: (auto, auto, auto, auto), 
+    info-style("学校代码：", align-type: right),
+    info-style(anonymous-info(info.school-code)),
+    info-style("研究生学号：", align-type: right),
+    info-style(anonymous-info(info.student-id)),
+  ))
+  block(height: 3.9cm, grid(
+    columns: auto, 
+    align: center,
+    if info.degreetype == "academic" {
+    if info.doctype == "doctor" { 
+      docname(anonymous-info(info.school-name) + "博士学位论文")
+      } else {
+        docname(anonymous-info(info.school-name) + "硕士学位论文")
+      }
+    } else if info.degreetype == "professional" {
+      if info.is-fulltime { 
+        docname(anonymous-info(info.school-name) + "\n硕士专业学位论文（全日制）")
+        } else { 
+          docname(anonymous-info(info.school-name) + "\n硕士专业学位论文（非全日制）")
+        }
+    }
+  ))
+  // 论文题目
+  block(height: 2.67cm, grid(
+    columns: auto, 
+    align: center,
+    title(info.title.join("\n"), font: 字体.黑体, size: 字号.二号, leading-scale: 0.8),
+  ))
 
   // 学生与指导老师信息
-  set align(center + bottom)
-  block(width: 75%, grid(
-    columns: (info-key-width, 1fr, info-key-width, 1fr),
-    column-gutter: column-gutter,
-    row-gutter: row-gutter,
-    info-key("姓　　名"),
-    info-long-value("author", info.author.name),
-    info-key("学　　号"),
-    info-long-value("student-id", info.author.sno),
-    info-key("院　　系"),
-    info-long-value("department", info.author.department),
-    info-key("专　　业"),
-    info-long-value("major", info.author.major),
-    info-key("指导教师"),
-    info-long-value("supervisor", info.supervisor.join(" ")),
+  { 
+    set align(center+horizon)
+    block(width: 10cm, grid(
+    align: (center, left),
+    columns: (4.33cm, 5cm),
+    rows: (0.99cm, 1.07cm, 1.14cm, 1.17cm, 1.23cm),
+    info-style("姓名", align-type: "justify"),
+    info-style(anonymous-info(info.author)),
+    ..(if info.degreetype == "professional" {(
+      {
+        info-style("专业学位类型", align-type: "justify")
+      },
+      // info-style(info.degree + "（" + info.major + "）"),
+      info-style(anonymous-info(info.degree)),
+    )} else {(
+      info-style("专业名称", align-type: "justify"),
+      info-style(anonymous-info(info.major)),
+    )}),
+    info-style("指导教师", align-type: "justify"),
+    info-style(info.supervisor.map(str => anonymous-info(str)).intersperse(" ").sum()),
+    ..(if info.supervisor-ii != () {(
+      info-style("　"),
+      info-style(info.supervisor-ii.map(str => anonymous-info(str)).intersperse(" ").sum()),
+    )} else { () }),
+    info-style("培养单位", align-type: "justify"),
+    info-style(anonymous-info(info.department.join("\n"))),
   ))
-  v(2em)
+  v((9.54cm-(0.99cm+1.07cm+1.14cm+1.17cm+1.23cm))/2)
+  }
 
-  text(font: 字体.黑体, size: 字号.四号)[#info.submit-date]
+  {
+    set align(center+bottom)
+    block(height: 2.67cm, grid(
+      columns: auto, 
+      align: center,
+      text(datetime-zh-display(info.submit-date, anonymous: anonymous), font: 字体.宋体, size: 字号.三号)
+    ))
+  }
+
+
+  // 第二页
+  pagebreak(weak: true, to: if twoside { "odd" })
+
+  block(height: 1.64cm, grid(
+    columns: auto, 
+    align: center,
+    if info.degreetype == "academic" {
+    if info.doctype == "doctor" { 
+      docname-en("A Dissertation Submitted to "+ anonymous-info(info.school-name-en) 
+      + "For the Doctor Degree of " + anonymous-info(info.degree-en))
+      } else {
+        docname-en("A Dissertation Submitted to "+ anonymous-info(info.school-name-en)
+      + "For the Master  Degree of " + anonymous-info(info.degree-en))
+      }
+    } else if info.degreetype == "professional" {
+      if info.is-fulltime { 
+        docname-en("A Dissertation Submitted to "+ anonymous-info(info.school-name-en)
+        + "\nFor the Full-Time Master of Professional Degree of\n" + anonymous-info(info.degree-en))
+        } else { 
+          docname-en("A Dissertation Submitted to "+ anonymous-info(info.school-name-en)
+        + "\nFor the Part-Time Master of Professional Degree of\n" + anonymous-info(info.degree-en))
+        }
+    }
+  ))
+  v(2.73cm)
+  //论文题目
+  block(height: 2.67cm, grid(
+    columns: auto, 
+    align: center,
+    title-en(info.title-en.join("\n"), leading-scale: 0.8),
+  ))
+
+  // 学生与指导老师信息
+  { 
+    set align(center+horizon)
+    block(width: 88%, grid(
+    align: (center, left),
+    columns: (6.99cm, auto),
+    rows: (0.99cm, 1.07cm, 1.14cm, 1.17cm, 1.23cm),
+    ..(if info.doctype == "doctor" {(
+      {
+        info-style("Ph.D. Candidate: ", align-type: right)
+      }, 
+      info-style(anonymous-info(info.author-en)),
+    )} else {(
+      info-style("Master Candidate: ", align-type: right), 
+      info-style(anonymous-info(info.author-en)),
+    )}),
+    ..(if info.degreetype == "professional" {(
+      {
+        info-style("Professional Degree Type: ", align-type: right)
+      },
+      info-style(anonymous-info(info.degree-en)),
+    )} else {(
+      info-style("Major: ", align-type: right),
+      info-style(anonymous-info(info.major-en)),
+    )}),
+    info-style("Supervisor: ", align-type: right),
+    info-style(info.supervisor-en.map(str => anonymous-info(str)).intersperse(" ").sum()),
+    ..(if info.supervisor-en != () {(
+      info-style("　"),
+      info-style(info.supervisor-ii-en.map(str => anonymous-info(str)).intersperse(" ").sum()),
+    )} else { () }),
+  ))
+  v((9.54cm-(0.99cm+1.07cm+1.14cm+1.17cm+1.23cm))/2)
+  }
+
+  {
+    set align(center+bottom)
+    block(height: 3.55cm, grid(
+      columns: auto, 
+      align: center,
+      if anonymous {
+        address-en("▢▢▢▢▢▢\n▢▢▢▢▢")
+      } else {
+        address-en("China University of Geosciences\nWuhan 430074 P.R. China")
+      }
+    ))
+  }
 }
+
+// 封面测试代码
+#import "/template/thesis-info.typ": thesis-info  
+#show: postgraduate-titlepage(info: thesis-info, anonymous: true)

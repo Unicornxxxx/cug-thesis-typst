@@ -1,12 +1,12 @@
 #import "../../utils/indent.typ": indent
 #import "../../utils/style.typ": 字号, 字体, show-cn-fakebold
-#import "./cover.typ": thesis-info
 
 // 学术声明页
 // 参照 [中国地质大学（武汉）研究生学位论文写作规范 2015年发](https://spa.sysu.edu.cn/zh-hans/article/1744) 电子档的示例设置格式
 #let postgraduate-declaration(
   anonymous: false,
   twoside: false,
+  info: (:),
 ) = {
   show: show-cn-fakebold
   // 如果需要匿名则短路返回
@@ -30,9 +30,9 @@
   v(字号.五号 * 3.0)
 
   set text(font: 字体.宋体, size: 字号.四号)
-  let title = thesis-info.at("title").join("")
+  let title = info.at("title").join("")
   let doctype = {
-    if (thesis-info.at("doctype") == "master") {
+    if (info.at("doctype") == "master") {
       "硕士"
     } else {
       "博士"
@@ -76,9 +76,9 @@
   v(字号.五号 * 3.0)
 
   set text(font: 字体.宋体, size: 字号.四号)
-  let title = thesis-info.at("title").join("")
+  let title = info.at("title").join("")
   let doctype = {
-    if (thesis-info.at("doctype") == "master") {
+    if (info.at("doctype") == "master") {
       "硕士"
     } else {
       "博士"
@@ -120,9 +120,9 @@
   v(字号.五号 * 3.0)
 
   set text(font: 字体.宋体, size: 字号.四号)
-  let title = thesis-info.at("title").join("")
+  let title = info.at("title").join("")
   let doctype = {
-    if (thesis-info.at("doctype") == "master") {
+    if (info.at("doctype") == "master") {
       "硕士"
     } else {
       "博士"
@@ -165,4 +165,6 @@
 
 }
 
-#show: postgraduate-declaration()
+// 测试代码
+#import "/template/thesis-info.typ": thesis-info 
+#show: postgraduate-declaration(info: thesis-info)

@@ -1,4 +1,4 @@
-#import "../utils/style.typ": 字号, 字体
+#import "../utils/style.typ": 字号, 字体, show-cn-fakebold
 #import "../utils/hline.typ": hline
 
 // 字体显示测试页
@@ -9,6 +9,7 @@
   lang: "zh",
 ) = {
   // 1. 默认参数
+  show: show-cn-fakebold
   fonts = 字体 + fonts
 
   // 2. 辅助函数

@@ -22,8 +22,8 @@
     month.replace(month, map_month.at(month))
   }}
   if anonymous {
-    year = "二〇XX"
-    month = "XX"
+    year = "二〇▢▢"
+    month = "▢▢"
   }
   [
       #(year)年#(month)月 //\ #year;年#month;月 \ #{year;[年];month;[月]}

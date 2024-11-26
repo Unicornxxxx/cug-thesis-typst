@@ -1,16 +1,16 @@
-// 南京大学学位论文模板 modern-nju-thesis
-// Author: https://github.com/OrangeX4
-// Repo: https://github.com/nju-lug/modern-nju-thesis
+// 中国地质大学学位论文模板 cug-thesis-typst
+// Author: https://github.com/Rsweater
+// Repo: https://github.com/Rsweater/cug-thesis-typst
 // 在线模板可能不会更新得很及时，如果需要最新版本，请关注 Repo
 
 #import "@preview/anti-matter:0.0.2": anti-inner-end as mainmatter-end
 #import "layouts/doc.typ": doc
-#import "layouts/preface.typ": preface
+// #import "layouts/preface.typ": preface
 #import "layouts/mainmatter.typ": mainmatter
 #import "layouts/appendix.typ": appendix
 #import "pages/fonts-display-page.typ": fonts-display-page
 // #import "pages/bachelor-cover.typ": bachelor-cover
-#import "pages/postgraduate/cover.typ": postgraduate-cover
+#import "pages/postgraduate/titlepage.typ": postgraduate-titlepage
 // #import "pages/bachelor-decl-page.typ": bachelor-decl-page
 #import "pages/postgraduate/declaration.typ": postgraduate-declaration
 // #import "pages/bachelor-abstract.typ": bachelor-abstract
@@ -58,7 +58,7 @@
     title: ("中国地质大学学位论文Typst模板", "参考研究生学位论文写作规范（2015-）"),
     title-en: ("The Specification of Writting and Printing", "for CUG thesis"),
 
-        // 论文作者信息：学号、姓名、院系、专业、指导老师
+    // 论文作者信息：学号、姓名、院系、专业、指导老师
     grade: "2025",
     student-id: "120222xxxx",
     school-code: "10491",
@@ -70,6 +70,7 @@
     department-en: "National Engineering Research Center of Geographic Information System",
     doctype: "master",
     degreetype: "professional", 
+    is-equivalent: false, 
     is-fulltime: true,
     degree: "工程硕士", 
     degree-en: "Master of Engineering",
@@ -95,9 +96,6 @@
     secret-level: "公开",
     supervisor-contact: "南京大学 江苏省南京市栖霞区仙林大道163号",
     email: "xyz@smail.nju.edu.cn",
-    // school-code: "10284",
-    // degree: auto,
-    // degree-en: auto,
   ) + info
 
   (
@@ -117,19 +115,21 @@
         info: info + args.named().at("info", default: (:)),
       )
     },
-    preface: (..args) => {
-      preface(
-        twoside: twoside,
-        ..args,
-      )
-    },
+    // preface: (..args) => {
+    //   preface(
+    //     twoside: twoside,
+    //     ..args,
+    //   )
+    // },
     mainmatter: (..args) => {
       if info.doctype == "master" or info.doctype == "doctor" {
         mainmatter(
           twoside: twoside,
+          anonymous: anonymous,
           display-header: true,
           ..args,
           fonts: fonts + args.named().at("fonts", default: (:)),
+          info: info + args.named().at("info", default: (:)),
         )
       } else {
         mainmatter(
@@ -159,17 +159,14 @@
       )
     },
 
-    // 封面页，通过 type 分发到不同函数
-    cover: (..args) => {
+    // 题名页，通过 type 分发到不同函数
+    titlepage: (..args) => {
       if info.doctype == "master" or info.doctype == "doctor" {
-        postgraduate-cover(
-          // doctype: info.doctype,
-          // degree: info.degree,
-          nl-cover: nl-cover,
+        postgraduate-titlepage(
           anonymous: anonymous,
           twoside: twoside,
           ..args,
-          fonts: fonts + args.named().at("fonts", default: (:)),
+          // fonts: fonts + args.named().at("fonts", default: (:)),
           info: info + args.named().at("info", default: (:)),
         )
       } else if info.doctype == "postdoc" {
@@ -193,6 +190,7 @@
           anonymous: anonymous,
           twoside: twoside,
           ..args,
+          info: info + args.named().at("info", default: (:)),
           // fonts: fonts + args.named().at("fonts", default: (:)),
         )
       } else if info.doctype == "postdoc" {
@@ -218,8 +216,7 @@
           anonymous: anonymous,
           twoside: twoside,
           ..args,
-          fonts: fonts + args.named().at("fonts", default: (:)),
-          info: info + args.named().at("info", default: (:)),
+          fonts: fonts + args.named().at("fonts", default: (:))
         )
       } else if info.doctype == "postdoc" {
         panic("postdoc has not yet been implemented.")
@@ -245,7 +242,7 @@
           twoside: twoside,
           ..args,
           fonts: fonts + args.named().at("fonts", default: (:)),
-          info: info + args.named().at("info", default: (:)),
+          // info: info + args.named().at("info", default: (:)),
         )
       } else if info.doctype == "postdoc" {
         panic("postdoc has not yet been implemented.")
