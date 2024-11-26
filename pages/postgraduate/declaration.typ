@@ -149,20 +149,6 @@
     )
   )
 
-  // 4. 个人简介
-  pagebreak(weak: true, to: if twoside { "odd" })
-  v(字号.五号 * 4)
-  align(
-    center,
-    text(
-      font: 字体.黑体,
-      size: 字号.三号,
-      weight: "bold",
-      "作者简历",
-    ),
-  )
-  v(字号.五号 * 3.0)
-
 }
 
 // 测试代码

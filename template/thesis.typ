@@ -11,7 +11,8 @@
   // 布局函数
   twoside, doc, mainmatter, mainmatter-end, appendix,
   // 页面函数
-  fonts-display-page, titlepage, decl-page, abstract, abstract-en, bilingual-bibliography,
+  fonts-display-page, titlepage, decl-page, resume-page, 
+  abstract, abstract-en, bilingual-bibliography,
   outline-page, list-of-figures-tables, notation, acknowledgement,
   // 其他
   info
@@ -70,6 +71,30 @@
 // 声明页
 #decl-page()
 
+// 作者简历
+#resume-page(
+  info: (
+    // 1. 基本情况信息
+    name:"张三", 
+    gender: "男", 
+    nation: "汉族", 
+    birthday: "2000-01-29",
+    native-place: "河南省鹤壁市",
+    bachelor-time: "2018.09——2022.06",
+    bachelor-school: "河南农业大学",
+    master-time: "2022.09——2025.06",
+    master-school: "中国地质大学（武汉）",
+    doctor-time: "2020-09-01",
+    doctor-school: "广东工业大学",
+    // 2. 学术论文信息
+    thesis-reference-1: "X. X研究[J]. X学报，2004（1）：53-55.",
+    thesis-reference-2: "X. X分析[J]. X技术，2005（5）：6-7.",
+    // 3. 获奖、专利情况信息
+    award-1: "X. X. 江苏省科技进步奖三等奖.排名第2；",
+    // 4. 研究项目信息
+    project-1: "X项目, 国家自然基金,项目编号：X,参加人员；",
+  )
+)
 
 // 前言
 // #show: preface

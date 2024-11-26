@@ -146,7 +146,6 @@
     v(array-at(heading-below, it.level))
     // fake-par
   }
-  // show heading: it=>it+fake-par
   // 4.3 标题居中与自动换页
   show heading: it => {
     if (array-at(heading-pagebreak, it.level)) {

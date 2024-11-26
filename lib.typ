@@ -5,17 +5,13 @@
 
 #import "@preview/anti-matter:0.0.2": anti-inner-end as mainmatter-end
 #import "layouts/doc.typ": doc
-// #import "layouts/preface.typ": preface
 #import "layouts/mainmatter.typ": mainmatter
 #import "layouts/appendix.typ": appendix
 #import "pages/fonts-display-page.typ": fonts-display-page
-// #import "pages/bachelor-cover.typ": bachelor-cover
 #import "pages/postgraduate/titlepage.typ": postgraduate-titlepage
-// #import "pages/bachelor-decl-page.typ": bachelor-decl-page
 #import "pages/postgraduate/declaration.typ": postgraduate-declaration
-// #import "pages/bachelor-abstract.typ": bachelor-abstract
+#import "pages/postgraduate/resume.typ": postgraduate-resume
 #import "pages/postgraduate/abstract.typ": postgraduate-abstract
-// #import "pages/bachelor-abstract-en.typ": bachelor-abstract-en
 #import "pages/postgraduate/abstract-en.typ": postgraduate-abstract-en
 #import "pages/postgraduate/outline.typ": postgraduate-outline
 #import "pages/list-of-figures-tables.typ": list-of-figures-tables
@@ -166,7 +162,6 @@
           anonymous: anonymous,
           twoside: twoside,
           ..args,
-          // fonts: fonts + args.named().at("fonts", default: (:)),
           info: info + args.named().at("info", default: (:)),
         )
       } else if info.doctype == "postdoc" {
@@ -191,7 +186,28 @@
           twoside: twoside,
           ..args,
           info: info + args.named().at("info", default: (:)),
-          // fonts: fonts + args.named().at("fonts", default: (:)),
+        )
+      } else if info.doctype == "postdoc" {
+        panic("postdoc has not yet been implemented.")
+      } else {
+        panic("bachelor has not yet been implemented.")
+        // bachelor-decl-page(
+        //   anonymous: anonymous,
+        //   twoside: twoside,
+        //   ..args,
+        //   fonts: fonts + args.named().at("fonts", default: (:)),
+        //   info: info + args.named().at("info", default: (:)),
+        // )
+      }
+    },
+
+    resume-page: (..args) => {
+      if info.doctype == "master" or info.doctype == "doctor" {
+        postgraduate-resume(
+          anonymous: anonymous,
+          twoside: twoside,
+          ..args,
+          info: info + args.named().at("info", default: (:)),
         )
       } else if info.doctype == "postdoc" {
         panic("postdoc has not yet been implemented.")
