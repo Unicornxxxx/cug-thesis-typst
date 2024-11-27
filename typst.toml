@@ -1,5 +1,5 @@
 [package]
-name = "modern-nju-thesis"
+name = "cug-thesis"
 version = "0.1.0"
 entrypoint = "lib.typ"
 authors = ["Brevin"]

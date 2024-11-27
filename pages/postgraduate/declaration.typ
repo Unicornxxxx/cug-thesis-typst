@@ -2,7 +2,6 @@
 #import "../../utils/style.typ": 字号, 字体
 
 // 学术声明页
-// 参照 [中国地质大学（武汉）研究生学位论文写作规范 2015年发](https://spa.sysu.edu.cn/zh-hans/article/1744) 电子档的示例设置格式
 #let postgraduate-declaration(
   anonymous: false,
   twoside: false,

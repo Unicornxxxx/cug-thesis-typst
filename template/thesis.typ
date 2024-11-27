@@ -1,10 +1,9 @@
-// 建议在正式编辑论文时，采用 typst.app 中的已发布版本模板
-// #import "@preview/modern-nju-thesis:0.3.4": documentclass, indent
+// 在线模式
+// #import "@preview/cug-thesis-typst:0.1.0": documentclass, indent
 
-// 仅供开发调试使用
+// 本地模式
 #import "/lib.typ": documentclass, indent
 
-// 你首先应该安装 https://github.com/nju-lug/modern-nju-thesis/tree/main/fonts/FangZheng 里的所有字体，
 // 如果是 Web App 上编辑，你应该手动上传这些字体文件，否则不能正常使用「楷体」和「仿宋」，导致显示错误。
 
 #let (

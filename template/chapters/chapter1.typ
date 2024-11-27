@@ -62,11 +62,11 @@
 正文内容
 
 #figure(
-  image("../images/nju-emblem.svg", width: 20%),
+  image("../images/A-1.1.2校徽图案.jpg", width: 20%),
   caption: [图片测试],
 ) <nju-logo2>
 
 #figure(
-  image("../images/nju-emblem.svg", width: 20%),
+  image("../images/A-1.1.2校徽图案.jpg", width: 20%),
   caption: [图片测试],
 ) <nju-log3>

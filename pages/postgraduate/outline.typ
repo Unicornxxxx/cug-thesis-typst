@@ -2,7 +2,7 @@
 #import "../../utils/invisible-heading.typ": invisible-heading
 #import "../../utils/style.typ": 字号, 字体
 
-// 本科生目录生成
+// 目录生成
 #let postgraduate-outline(
   // documentclass 传入参数
   twoside: false,

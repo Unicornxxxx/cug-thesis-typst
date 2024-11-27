@@ -1,4 +1,5 @@
-// Authors: Rsweater, OrangeX4
+// Authors: Rsweater, csimide, OrangeX4
+// Adapted from https://github.com/nju-lug/modern-nju-thesis/blob/main/utils/bilingual-bibliography.typ
 // Tested only on GB-7714-2005-Numeric-CUG
 #let bilingual-bibliography(
   bibliography: none,
