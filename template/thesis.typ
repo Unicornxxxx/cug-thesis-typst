@@ -9,21 +9,26 @@
 
 #let (
   // 布局函数
-  twoside, doc, mainmatter, mainmatter-end, appendix,
+  single-side, doc, mainmatter, mainmatter-end, appendix,
   // 页面函数
-  fonts-display-page, titlepage, decl-page, resume-page, 
+  fonts-display-page, title-page, decl-page, resume-page, 
   abstract, abstract-en, bilingual-bibliography,
   outline-page, list-of-figures-tables, notation, acknowledgement,
   // 其他
   info
 ) = documentclass(
   anonymous: false,  // 盲审模式
-  twoside: false,  // 双面模式，会加入空白页，便于打印
+  // 论文页面顺序：
+  // （封面，统一打印）、题名页（中文，英文）、声明页（原创性声明、导师承诺书、使用授权书）、简历页
+  // 中文摘要、Abstract、目录、图和表清单、正文、致谢、参考文献（、附录）。
+  // 单面打印范围，自中文摘要后双面
+  single-side: ("title-page", "decl-page", "resume-page"),  
   // 可自定义字体，先英文字体后中文字体，应传入「宋体」、「黑体」、「楷体」、「仿宋」、「等宽」
   // fonts: (楷体: ("Times New Roman", "FZKai-Z03S")),
   info: (
-    // 论文标题，将展示在封面、扉页与页眉上
-    // 多行标题请使用数组传入 `("thesis title", "with part next line")`，或使用换行符：`"thesis title\nwith part next line"`
+    // 论文标题，将展示在题名页与页眉上
+    // 多行标题请使用数组传入 `("thesis title", "with part next line")`，
+    // 或使用换行符：`"thesis title\nwith part next line"`
     title: ("中国地质大学学位论文Typst模板", "参考研究生学位论文写作规范（2015-）"),
     title-en: ("The Specification of Writting and Printing", "for CUG thesis"),
 
@@ -37,13 +42,12 @@
     author-en: "Ming Xing",
     department: "国家地理信息系统\n工程技术研究中心",
     department-en: "National Engineering Research Center of Geographic Information System",
-    // doctype: "master",  // "bachelor" | "master" | "doctor" | "postdoc", 文档类型，默认为本科生 bachelor
     doctype: "master", // "bachelor" | "master" | "doctor" | "postdoc", 文档类型，默认为本科生 bachelor
     degreetype: "professional", // "academic" | "professional", 学位类型，默认为学术型 academic
-    is-fulltime: true,
-    degree: "工程硕士", 
+    is-fulltime: true, // 是否全日制，默认为 true
+    degree: "工程硕士",  // 学位名称，默认为工程硕士（专硕学位名称，学硕与专业名称类似）
     degree-en: "Master of Engineering",
-    major: "测绘工程",
+    major: "测绘工程",  // 专业名称，默认为测绘工程
     major-en: "Surveying and Mapping Engineering",
     // 指导老师信息，以`("name", "title")` 数组方式传入
     supervisor: ("李四", "教授"),
@@ -61,16 +65,10 @@
 
 // 文稿设置
 #show: doc
-
-// 字体展示测试页
-// #fonts-display-page()
-
 // 封面页
-#titlepage()
-
+#title-page()
 // 声明页
 #decl-page()
-
 // 作者简历
 #resume-page(
   info: (
@@ -96,21 +94,18 @@
   )
 )
 
-// 前言
-// #show: preface
-
 // 中文摘要
 #abstract(
-  keywords: ("我", "就是", "测试用", "关键词")
+  keywords: ("中国地质大学（武汉）", "学位论文", "Typst模板")
 )[
-  中文摘要
+  该项目是中国地质大学（武汉）学位论文Typst模板，主要依据#link("https://xgxy.cug.edu.cn/info/1073/3509.htm")[中国地质大学（武汉）研究生学位论文写作规范（2015-）]实现。该模板包含了 Typst 的简单介绍、特点，以及该模板使用方法以及注意事项等。如有疑问，欢迎各位前来#link("https://github.com/Rsweater/cug-thesis-typst/issues")[issue]交流 ~
 ]
 
 // 英文摘要
 #abstract-en(
-  keywords: ("Dummy", "Keywords", "Here", "It Is")
+  keywords: ("CUG", "Thesis Template", "Typst")
 )[
-  English abstract
+  This project is the China University of Geosciences Dissertation Typst template, which is mainly realized based on #link("https://xgxy.cug.edu.cn/info/1073/3509.htm") [China University of Geosciences Postgraduate Dissertation Writing Standards (2015-)]. The template contains a brief introduction to Typst, its features, and how to use this template as well as precautions. If you have any questions, you are welcome to come to #link("https://github.com/Rsweater/cug-thesis-typst/issues")[issue] to exchange ~
 ]
 
 
@@ -133,43 +128,37 @@
 
 #include "chapters/chapter1.typ"
 
-
-// 手动分页
-#if twoside {
-  pagebreak() + " "
-}
+// // 手动分页
+// #if twoside {
+//   pagebreak() + " "
+// }
 
 // 中英双语参考文献
 // 默认使用 gb-7714-2015-numeric 样式
-#bilingual-bibliography(full: true)
+#bilingual-bibliography(full: false, style: "gb-t-7714-2005-numeric-cug.csl")
 
 // 致谢
 #acknowledgement[
-  感谢 NJU-LUG，感谢 NJUThesis LaTeX 模板。
+  感谢 Typst 非官方中文交流群的热心大佬的帮助 (797942860)，感谢 #link("https://github.com/nju-lug/modern-nju-thesis")[modern-nju-thesis]、#link("https://github.com/sysu/better-thesis")[better-thesis]、#link("https://github.com/hitszosa/universal-hit-thesis")[HIT-Thesis-Typst] 模板提供的代码思路，感谢 #link("https://gist.github.com/csimide")[csimide] 和 #link("https://github.com/OrangeX4")[OrangeX4] 提供的中英双语参考文献实现.
 ]
 
-// 手动分页
-#if twoside {
-  pagebreak() + " "
-}
-
 // 附录
-#show: appendix
+// #show: appendix
 
-= 附录
+// = 附录
 
-== 附录子标题
+// == 附录子标题
 
-=== 附录子子标题
+// === 附录子子标题
 
-附录内容，这里也可以加入图片，例如@fig:appendix-img。
+// 附录内容，这里也可以加入图片，例如@fig:appendix-img。
 
-#figure(
-  image("images/nju-emblem.svg", width: 20%),
-  caption: [图片测试],
-) <appendix-img>
+// #figure(
+//   image("images/nju-emblem.svg", width: 20%),
+//   caption: [图片测试],
+// ) <appendix-img>
 
 
-// 正文结束标志，不可缺少
-// 这里放在附录后面，使得页码能正确计数
+// // 正文结束标志，不可缺少
+// // 这里放在附录后面，使得页码能正确计数
 #mainmatter-end()

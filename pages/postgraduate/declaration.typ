@@ -1,5 +1,5 @@
 #import "../../utils/indent.typ": indent
-#import "../../utils/style.typ": 字号, 字体, show-cn-fakebold
+#import "../../utils/style.typ": 字号, 字体
 
 // 学术声明页
 // 参照 [中国地质大学（武汉）研究生学位论文写作规范 2015年发](https://spa.sysu.edu.cn/zh-hans/article/1744) 电子档的示例设置格式
@@ -8,15 +8,12 @@
   twoside: false,
   info: (:),
 ) = {
-  show: show-cn-fakebold
   // 如果需要匿名则短路返回
   if anonymous {
     return
   }
 
   // 1. 原创性声明
-  pagebreak(weak: true, to: if twoside { "odd" })
-  
   v(字号.五号 * 2)
   align(
     center,
@@ -59,10 +56,9 @@
     )
   )
 
-  
-  // 2. 导师承诺书
   pagebreak(weak: true, to: if twoside { "odd" })
   
+  // 2. 导师承诺书
   v(字号.五号 * 2)
   align(
     center,
@@ -104,9 +100,8 @@
       )
     )
   )
-  // 3. 使用授权书
   pagebreak(weak: true, to: if twoside { "odd" })
-  
+  // 3. 使用授权书 
   v(字号.五号 * 2)
   align(
     center,
@@ -148,9 +143,9 @@
       )
     )
   )
-
+  pagebreak(weak: true, to: if twoside { "odd" })
 }
 
 // 测试代码
-#import "/template/thesis-info.typ": thesis-info 
-#show: postgraduate-declaration(info: thesis-info)
+// #import "/template/thesis-info.typ": thesis-info 
+// #show: postgraduate-declaration(info: thesis-info)

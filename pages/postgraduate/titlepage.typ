@@ -1,6 +1,6 @@
 #import "../../utils/datetime-display.typ": datetime-zh-display
 #import "../../utils/justify-text.typ": justify-text
-#import "../../utils/style.typ": 字号, 字体, show-cn-fakebold
+#import "../../utils/style.typ": 字号, 字体
 #import "../../utils/anonymous-info.typ": anonymous-info
 
 // 研究生封面
@@ -21,9 +21,7 @@
   min-title-lines: 2,
   min-reviewer-lines: 5,
   info-inset: (bottom: -2pt),
-  // datetime-zh-display: datetime-zh-display,
 ) = {
-  show: show-cn-fakebold
   // 对参数进行处理
   // 如果是字符串，则使用换行符将标题分隔为列表
   if type(info.title) == str {
@@ -35,10 +33,6 @@
   if type(info.department) == str {
     info.department = info.department.split("\n")
   }
-  // 根据 min-title-lines 和 min-reviewer-lines 填充标题和评阅人
-  // info.title = info.title + range(min-title-lines - info.title.len()).map((it) => "　")
-  // info.reviewer = info.reviewer + range(min-reviewer-lines - info.reviewer.len()).map((it) => "　")
-  // 处理日期
   assert(type(info.submit-date) == datetime, message: "submit-date must be datetime.")
 
   // 内置辅助函数
@@ -87,8 +81,7 @@
   let anonymous-info = anonymous-info.with(anonymous: anonymous)
 
   // 正式渲染
-  pagebreak(weak: true, to: if twoside { "odd" })
-
+  // 中文题名页
   block(height: 1.38cm, grid(
     columns: (auto, auto, auto, auto), 
     info-style("学校代码：", align-type: right),
@@ -117,7 +110,7 @@
   block(height: 2.67cm, grid(
     columns: auto, 
     align: center,
-    title(info.title.join("\n"), font: 字体.黑体, size: 字号.二号, leading-scale: 0.8),
+    title(info.title.join("\n"), font: 字体.黑体, size: 字号.二号, leading-scale: 1.0),
   ))
 
   // 学生与指导老师信息
@@ -159,11 +152,10 @@
       text(datetime-zh-display(info.submit-date, anonymous: anonymous), font: 字体.宋体, size: 字号.三号)
     ))
   }
-
-
-  // 第二页
   pagebreak(weak: true, to: if twoside { "odd" })
+ 
 
+  // 英文题名页
   block(height: 1.64cm, grid(
     columns: auto, 
     align: center,
@@ -220,7 +212,7 @@
     )}),
     info-style("Supervisor: ", align-type: right),
     info-style(info.supervisor-en.map(str => anonymous-info(str)).intersperse(" ").sum()),
-    ..(if info.supervisor-en != () {(
+    ..(if info.supervisor-ii-en != () {(
       info-style("　"),
       info-style(info.supervisor-ii-en.map(str => anonymous-info(str)).intersperse(" ").sum()),
     )} else { () }),
@@ -240,8 +232,9 @@
       }
     ))
   }
+  pagebreak(weak: true, to: if twoside { "odd" })
 }
 
 // 封面测试代码
-#import "/template/thesis-info.typ": thesis-info  
-#show: postgraduate-titlepage(info: thesis-info, anonymous: true)
+// #import "/template/thesis-info.typ": thesis-info  
+// #show: postgraduate-titlepage(info: thesis-info, anonymous: true)

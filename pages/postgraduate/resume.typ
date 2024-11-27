@@ -1,4 +1,4 @@
-#import "../../utils/style.typ": 字号, 字体, show-cn-fakebold
+#import "../../utils/style.typ": 字号, 字体
 #import "../../utils/indent.typ": indent
 
 // 作者简历
@@ -7,14 +7,12 @@
   twoside: false,
   info: (:),
 ) = {
-  show: show-cn-fakebold
   // 如果需要匿名则短路返回
   if anonymous {
     return
   }
 
   // 个人简介
-  pagebreak(weak: true, to: if twoside { "odd" })
   v(字号.五号 * 4)
   align(
     center,
@@ -54,6 +52,7 @@
   par(leading: 1.0em, first-line-indent: 2em)[
     #info.project-1;
   ]
+  pagebreak(weak: true, to: if twoside { "odd" })
 }
 
 #postgraduate-resume(

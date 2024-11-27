@@ -1,5 +1,6 @@
-// 修改与modern-nju-thesis
 // 文稿设置，可以进行一些像页面边距这类的全局设置
+#import "../utils/style.typ": show-cn-fakebold
+
 #let doc(
   // documentclass 传入参数
   info: (:),
@@ -22,6 +23,7 @@
   }
 
   // 3.  基本的样式设置
+  show: show-cn-fakebold
   set text(fallback: fallback, lang: lang)
   set page(margin: margin)
 

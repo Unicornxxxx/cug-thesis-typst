@@ -1,4 +1,4 @@
-#import "../../utils/style.typ": 字号, 字体, show-cn-fakebold
+#import "../../utils/style.typ": 字号, 字体
 
 // 研究生中文摘要页
 #let postgraduate-abstract(
@@ -17,7 +17,6 @@
   body,
 ) = {
   // 默认参数
-  show: show-cn-fakebold  // 中文加粗显示
   fonts = 字体 + fonts
 
   // 正式渲染

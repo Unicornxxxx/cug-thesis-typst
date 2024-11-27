@@ -27,10 +27,8 @@
 
 // 使用函数闭包特性，通过 `documentclass` 函数类进行全局信息配置，然后暴露出拥有了全局配置的、具体的 `layouts` 和 `templates` 内部函数。
 #let documentclass(
-  // doctype: "bachelor",  // "bachelor" | "master" | "doctor" | "postdoc"，文档类型，默认为本科生 bachelor
-  // degree: "academic",  // "academic" | "professional"，学位类型，默认为学术型 academic
   nl-cover: false,  // TODO: 是否使用国家图书馆封面，默认关闭
-  twoside: false,  // 双面模式，会加入空白页，便于打印
+  single-side: none,  // 单面打印范围
   anonymous: false,  // 盲审模式
   bibliography: none,  // 原来的参考文献函数
   // 控制页面是否渲染
@@ -75,8 +73,8 @@
     // 指导老师信息，以`("name", "title")` 数组方式传入
     supervisor: ("李四", "教授"),
     supervisor-en: ("Prof.", "Li Si"),
-    supervisor-ii: ("王五", "副教授"),
-    supervisor-ii-en: ("Prof.", "Wang Wu"),
+    supervisor-ii: (),
+    supervisor-ii-en: (),
     address-en: "Wuhan 430074 P.R. China",
 
     // 提交日期，默认为论文 PDF 生成日期
@@ -99,7 +97,7 @@
     doctype: info.doctype,
     degree: info.degree,
     nl-cover: nl-cover,
-    twoside: twoside,
+    single-side: single-side,
     anonymous: anonymous,
     fonts: fonts,
     info: info,
@@ -111,16 +109,10 @@
         info: info + args.named().at("info", default: (:)),
       )
     },
-    // preface: (..args) => {
-    //   preface(
-    //     twoside: twoside,
-    //     ..args,
-    //   )
-    // },
     mainmatter: (..args) => {
       if info.doctype == "master" or info.doctype == "doctor" {
         mainmatter(
-          twoside: twoside,
+          twoside: if single-side.contains("mainmatter") { true } else { false },
           anonymous: anonymous,
           display-header: true,
           ..args,
@@ -129,7 +121,7 @@
         )
       } else {
         mainmatter(
-          twoside: twoside,
+          twoside: if single-side.contains("mainmatter") { true } else { false },
           ..args,
           fonts: fonts + args.named().at("fonts", default: (:)),
         )
@@ -149,18 +141,21 @@
     // 字体展示页
     fonts-display-page: (..args) => {
       fonts-display-page(
-        twoside: twoside,
+        twoside: if single-side.contains("fonts-display-page") { true } else { false },
         ..args,
         fonts: fonts + args.named().at("fonts", default: (:)),
       )
     },
 
+    // 封面
+    
+
     // 题名页，通过 type 分发到不同函数
-    titlepage: (..args) => {
+    title-page: (..args) => {
       if info.doctype == "master" or info.doctype == "doctor" {
         postgraduate-titlepage(
           anonymous: anonymous,
-          twoside: twoside,
+          twoside: if single-side.contains("title-page") { true } else { false },
           ..args,
           info: info + args.named().at("info", default: (:)),
         )
@@ -170,7 +165,7 @@
         panic("bachelor has not yet been implemented.")
         // bachelor-cover(
         //   anonymous: anonymous,
-        //   twoside: twoside,
+        //   twoside: if single-side.contains("title-page") { true } else { false },
         //   ..args,
         //   fonts: fonts + args.named().at("fonts", default: (:)),
         //   info: info + args.named().at("info", default: (:)),
@@ -183,7 +178,7 @@
       if info.doctype == "master" or info.doctype == "doctor" {
         postgraduate-declaration(
           anonymous: anonymous,
-          twoside: twoside,
+          twoside: if single-side.contains("decl-page") { true } else { false },
           ..args,
           info: info + args.named().at("info", default: (:)),
         )
@@ -193,7 +188,7 @@
         panic("bachelor has not yet been implemented.")
         // bachelor-decl-page(
         //   anonymous: anonymous,
-        //   twoside: twoside,
+        //   twoside: if single-side.contains("decl-page") { true } else { false },
         //   ..args,
         //   fonts: fonts + args.named().at("fonts", default: (:)),
         //   info: info + args.named().at("info", default: (:)),
@@ -205,7 +200,7 @@
       if info.doctype == "master" or info.doctype == "doctor" {
         postgraduate-resume(
           anonymous: anonymous,
-          twoside: twoside,
+          twoside: if single-side.contains("resume-page") { true } else { false },
           ..args,
           info: info + args.named().at("info", default: (:)),
         )
@@ -215,7 +210,7 @@
         panic("bachelor has not yet been implemented.")
         // bachelor-decl-page(
         //   anonymous: anonymous,
-        //   twoside: twoside,
+        //   twoside: if single-side.contains("resume-page") { true } else { false },
         //   ..args,
         //   fonts: fonts + args.named().at("fonts", default: (:)),
         //   info: info + args.named().at("info", default: (:)),
@@ -230,7 +225,7 @@
           doctype: info.doctype,
           degree: info.degree,
           anonymous: anonymous,
-          twoside: twoside,
+          twoside: if single-side.contains("abstract") { true } else { false },
           ..args,
           fonts: fonts + args.named().at("fonts", default: (:))
         )
@@ -240,7 +235,7 @@
         panic("bachelor has not yet been implemented.")
         // bachelor-abstract(
         //   anonymous: anonymous,
-        //   twoside: twoside,
+        //   twoside: if single-side.contains("abstract") { true } else { false },
         //   ..args,
         //   fonts: fonts + args.named().at("fonts", default: (:)),
         //   info: info + args.named().at("info", default: (:)),
@@ -255,7 +250,7 @@
           doctype: info.doctype,
           degree: info.degree,
           anonymous: anonymous,
-          twoside: twoside,
+          twoside: if single-side.contains("abstract-en") { true } else { false },
           ..args,
           fonts: fonts + args.named().at("fonts", default: (:)),
           // info: info + args.named().at("info", default: (:)),
@@ -266,7 +261,7 @@
         panic("bachelor has not yet been implemented.")
         // bachelor-abstract-en(
         //   anonymous: anonymous,
-        //   twoside: twoside,
+        //   twoside: if single-side.contains("abstract-en") { true } else { false },
         //   ..args,
         //   fonts: fonts + args.named().at("fonts", default: (:)),
         //   info: info + args.named().at("info", default: (:)),
@@ -277,7 +272,7 @@
     // 目录页
     outline-page: (..args) => {
       postgraduate-outline(
-        twoside: twoside,
+        twoside: if single-side.contains("outline-page") { true } else { false },
         ..args,
         fonts: fonts + args.named().at("fonts", default: (:)),
       )
@@ -286,7 +281,7 @@
     // 图标目录页
     list-of-figures-tables: (..args) => {
       list-of-figures-tables(
-        twoside: twoside,
+        twoside: if single-side.contains("outline-page") { true } else { false },
         ..args,
         fonts: fonts + args.named().at("fonts", default: (:)),
       )
@@ -295,7 +290,7 @@
     // 符号表页
     notation: (..args) => {
       notation(
-        twoside: twoside,
+        twoside: if single-side.contains("notation") { true } else { false },
         ..args,
       )
     },
@@ -312,7 +307,7 @@
     acknowledgement: (..args) => {
       acknowledgement(
         anonymous: anonymous,
-        twoside: twoside,
+        twoside: if single-side.contains("acknowledgement") { true } else { false },
         ..args,
       )
     },
