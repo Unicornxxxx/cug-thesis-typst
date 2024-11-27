@@ -4,8 +4,6 @@
 // 本地模式
 #import "/lib.typ": documentclass, indent
 
-// 如果是 Web App 上编辑，你应该手动上传这些字体文件，否则不能正常使用「楷体」和「仿宋」，导致显示错误。
-
 #let (
   // 布局函数
   single-side, doc, mainmatter, mainmatter-end, appendix,

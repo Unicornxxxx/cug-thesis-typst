@@ -52,12 +52,32 @@
 
 ### 使用这个模板需要了解些什么？
 
+需要掌握一些 Markdown Like 标记用来编写文档，了解文章大致结构即可【见 `template\thesis.typ` 中介绍】。
+
+**参考资料：**
+
+- 官网Tutorial：[Writing in Typst – Typst Documentation](https://typst.app/docs/tutorial/writing-in-typst/)
+- 中文社区小蓝书：[The Raindrop-Blue Book (Typst中文教程)](https://typst-doc-cn.github.io/tutorial/basic/writing-markup.html)
+
 ### 我不会代码、不会 LaTeX 可以使用吗？从接触到使用需要多久？
 
+可以的。因为文档样式该模板已经提供，Typst 有标记模式（语法糖），使用起来就类似于 Markdown，完全不需要较多的代码功底。
+
+如果有 Markdown 基础，基本上可以直接上手~ 如果没有，跳回第一个问题，查看相关说明。
+
 ### Typst 是个啥玩意？相较于 LaTeX 有啥优势？
+
+**提供两篇**写的很用心的**文章：**
+
+- [探索 Typst，一种类似于 LaTeX 的新排版系统](https://mp.weixin.qq.com/s/58IYHA3pROuh4iDHB4o1Vw)（译文）、[原文](https://blog.jreyesr.com/posts/typst/)
+- [Typst 中文用户使用体验 - OrangeX4大佬](https://zhuanlan.zhihu.com/p/669097092)
 
 ## 致谢
 
 - 感谢 [modern-nju-thesis](https://github.com/nju-lug/modern-nju-thesis)、[better-thesis](https://github.com/sysu/better-thesis)、[HIT-Thesis-Typst](https://github.com/hitszosa/universal-hit-thesis) 为本模板提供了项目实现思路。
 - 感谢 [Timozer/CUGThesis: 中国地质大学（武汉）研究生学位论文 TeX 模板](https://github.com/Timozer/CUGThesis) 提供了页面布局依据。
 - 感谢 [Typst 非官方中文交流群](https://jq.qq.com/?_wv=1027&k=m58va1kd)中大佬的热心帮助。
+
+## License
+
+This project is licensed under the MIT License.

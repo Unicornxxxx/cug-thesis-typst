@@ -28,7 +28,7 @@
 // 使用函数闭包特性，通过 `documentclass` 函数类进行全局信息配置，然后暴露出拥有了全局配置的、具体的 `layouts` 和 `templates` 内部函数。
 #let documentclass(
   nl-cover: false,  // TODO: 是否使用国家图书馆封面，默认关闭
-  single-side: none,  // 单面打印范围
+  single-side: (),  // 单面打印范围
   anonymous: false,  // 盲审模式
   bibliography: none,  // 原来的参考文献函数
   // 控制页面是否渲染
