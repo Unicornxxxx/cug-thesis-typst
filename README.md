@@ -29,9 +29,9 @@
 
 ### Typst 在线编辑
 
-目前 Typst 官方 packages 库还没有收录，等收录了之后，就不用 clone 相关的布局文件，只需要在 Web App 中的 `Start from template` 里选择 `cug-thesis`，编辑 `thesis.typ` 即可。
+本模板已上传 [Typst Universe](https://typst.app/universe)，您可以使用 Typst 的官方 Web App 进行编辑。只需要在 [Typst Web App](https://typst.app/) 中的 `Start from template` 里选择 `modern-cug-thesis`，即可从模板创建项目。
 
-或者，直接点击注册 typst.app.universe.cug-thesis，并开始编写你的论文~
+或者，直接点击注册 [typst.app.universe.cug-thesis](https://typst.app/app?template=modern-cug-thesis&version=0.1.0)，并开始编写你的论文~
 
 ### 如果你经常使用 VS Code，也比较推荐使用这个~
 
@@ -69,14 +69,14 @@
 
 **提供两篇**写的很用心的**文章：**
 
-- [探索 Typst，一种类似于 LaTeX 的新排版系统](https://mp.weixin.qq.com/s/58IYHA3pROuh4iDHB4o1Vw)（译文）、[原文](https://blog.jreyesr.com/posts/typst/)
+- [探索 Typst，一种类似于 LaTeX 的新排版系统]()（译文）、[原文](https://blog.jreyesr.com/posts/typst/)
 - [Typst 中文用户使用体验 - OrangeX4大佬](https://zhuanlan.zhihu.com/p/669097092)
 
 ## 致谢
 
 - 感谢 [modern-nju-thesis](https://github.com/nju-lug/modern-nju-thesis)、[better-thesis](https://github.com/sysu/better-thesis)、[HIT-Thesis-Typst](https://github.com/hitszosa/universal-hit-thesis) 为本模板提供了项目实现思路。
 - 感谢 [Timozer/CUGThesis: 中国地质大学（武汉）研究生学位论文 TeX 模板](https://github.com/Timozer/CUGThesis) 提供了页面布局依据。
-- 感谢 [Typst 非官方中文交流群](https://jq.qq.com/?_wv=1027&k=m58va1kd)中大佬的热心帮助。
+- 感谢 [Typst 非官方中文交流群](https://jq.qq.com/?_wv=1027&k=m58va1kd) 中大佬的热心帮助。
 
 ## License
 
