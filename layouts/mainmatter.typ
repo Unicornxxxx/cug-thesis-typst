@@ -127,10 +127,6 @@
   // 4.1 设置标题的 Numbering
   set heading(numbering: numbering)
   // 4.2 设置字体字号并加入假段落模拟首行缩进
-  let indent_hack = it => {
-    set par(spacing: 0em)
-    it; v(-1.35em); ";"
-  }
   show heading: it => {
     set par(spacing: 1.0em) // 单倍行距
     set text(
@@ -183,18 +179,3 @@
   counter(page).update(1)
   it
 }
-
-
-// 测试代码
-// #import "/template/thesis-info.typ": thesis-info 
-// #set text(fallback: false, lang: "zh", region: "CN")
-// #set page(margin: (x: 3cm, y: 3cm))
-// #show: mainmatter(
-//           twoside: false,
-//           display-header: true,
-//           anonymous: true,
-//           info: thesis-info,
-//           [测试文本],
-//           // fonts: 字体,
-//         )
-
