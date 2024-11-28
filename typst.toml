@@ -1,5 +1,5 @@
 [package]
-name = "cug-thesis"
+name = "modern-cug-thesis"
 version = "0.1.0"
 entrypoint = "lib.typ"
 authors = ["Brevin"]
@@ -8,7 +8,6 @@ description = "中国地质大学（武汉）学位论文模板。China Universi
 repository = "https://github.com/Rsweater/cug-thesis-typst"
 keywords = ["China University of Geosciences", "thesis"]
 categories = ["thesis"]
-exclude = []
 
 [template]
 path = "template"
