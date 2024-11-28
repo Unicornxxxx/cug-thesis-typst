@@ -1,3 +1,4 @@
+
 # 基于 Typst 的中国地质大学（武汉）学位论文模板
 
 **cug-thesis-thesis** 适用于中国地质大学（武汉）学位论文模板，具有便捷、简单、实时渲染等特性。欢迎各位同学、校友们前来 [Issues](https://github.com/Rsweater/cug-thesis-typst/issues) 交流学习~
@@ -44,8 +45,8 @@
 2. **安装插件**：在 VS Code 中安装 [Tinymist Typst](https://marketplace.visualstudio.com/items?itemName=myriad-dreamin.tinymist)
 3. **准备项目文件**：
 
-   * **使用 Typst Packages**：按下 `Ctrl + Shift + P` 打开命令界面，输入 `Typst: Show available Typst templates (gallery) for picking up a template` 打开 Tinymist 提供的 Template Gallery，然后从里面找到 `cug-thesis`，点击 `❤` 按钮进行收藏，以及点击 `+` 号，就可以创建对应的论文模板了，会出现 `ref.bib` 以及 `thesis.typ`。
-   * **Clone Repo**: 使用命令 `git clone https://github.com/Rsweater/cug-thesis-typst.git` 将整个项目克隆到本地，寻找 `template/thesis.typ`。
+   - **使用 Typst Packages**：按下 `Ctrl + Shift + P` 打开命令界面，输入 `Typst: Show available Typst templates (gallery) for picking up a template` 打开 Tinymist 提供的 Template Gallery，然后从里面找到 `cug-thesis`，点击 `❤` 按钮进行收藏，以及点击 `+` 号，就可以创建对应的论文模板了，会出现 `ref.bib` 以及 `thesis.typ`。
+   - **Clone Repo**: 使用命令 `git clone https://github.com/Rsweater/cug-thesis-typst.git` 将整个项目克隆到本地，寻找 `template/thesis.typ`。
 4. 打开开始编写论文内容~
 
 ## Q&A
@@ -69,7 +70,7 @@
 
 **提供两篇**写的很用心的**文章：**
 
-- [探索 Typst，一种类似于 LaTeX 的新排版系统]()（译文）、[原文](https://blog.jreyesr.com/posts/typst/)
+- [探索 Typst，一种类似于 LaTeX 的新排版系统](https://mp.weixin.qq.com/s/58IYHA3pROuh4iDHB4o1Vw)（译文）、[原文](https://blog.jreyesr.com/posts/typst/)
 - [Typst 中文用户使用体验 - OrangeX4大佬](https://zhuanlan.zhihu.com/p/669097092)
 
 ## 致谢
