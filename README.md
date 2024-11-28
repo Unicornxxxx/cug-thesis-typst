@@ -77,7 +77,7 @@
 
 - 感谢 [modern-nju-thesis](https://github.com/nju-lug/modern-nju-thesis)、[better-thesis](https://github.com/sysu/better-thesis)、[HIT-Thesis-Typst](https://github.com/hitszosa/universal-hit-thesis) 为本模板提供了项目实现思路。
 - 感谢 [Timozer/CUGThesis: 中国地质大学（武汉）研究生学位论文 TeX 模板](https://github.com/Timozer/CUGThesis) 提供了页面布局依据。
-- 感谢 [Typst 非官方中文交流群](https://jq.qq.com/?_wv=1027&k=m58va1kd) 中大佬的热心帮助。
+- 感谢 [Typst 非官方中文交流群](https://jq.qq.com/?_wv=1027&k=m58va1kd) 的大佬的热心帮助。
 
 ## License
 
