@@ -63,6 +63,8 @@
 
 // 文稿设置
 #show: doc
+// 字体展示测试页
+#fonts-display-page()
 // 封面页
 #title-page()
 // 声明页

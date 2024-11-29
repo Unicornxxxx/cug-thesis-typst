@@ -73,11 +73,15 @@
 - [探索 Typst，一种类似于 LaTeX 的新排版系统](https://mp.weixin.qq.com/s/58IYHA3pROuh4iDHB4o1Vw)（译文）、[原文](https://blog.jreyesr.com/posts/typst/)
 - [Typst 中文用户使用体验 - OrangeX4大佬](https://zhuanlan.zhihu.com/p/669097092)
 
+### 为什么提醒类似  `unknown font family: songti sc` 的 Warning ?
+
+如果你的设备是 Windows ，会遇见所有的 `sc` 结尾的字体找不到的提醒，因为这个是 Mac OS 系统字体，可以忽略。模板为了适应不同的平台，模板默认设置了多种字体。但是只要不是两种系统的字体均报 Warning，就不会影响渲染效果。
+
 ## 致谢
 
 - 感谢 [modern-nju-thesis](https://github.com/nju-lug/modern-nju-thesis)、[better-thesis](https://github.com/sysu/better-thesis)、[HIT-Thesis-Typst](https://github.com/hitszosa/universal-hit-thesis) 为本模板提供了项目实现思路。
 - 感谢 [Timozer/CUGThesis: 中国地质大学（武汉）研究生学位论文 TeX 模板](https://github.com/Timozer/CUGThesis) 提供了页面布局依据。
-- 感谢 [Typst 非官方中文交流群](https://jq.qq.com/?_wv=1027&k=m58va1kd) 的大佬的热心帮助。
+- 感谢 [Typst 非官方中文交流群](https://jq.qq.com/?_wv=1027&k=m58va1kd) 的大佬的答疑解惑，感谢 [tzhTaylor](https://github.com/tzhTaylor) 大佬交流 CJK 第一段首行缩进的解决方案。
 
 ## License
 

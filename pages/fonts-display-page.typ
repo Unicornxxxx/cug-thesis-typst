@@ -52,6 +52,7 @@
 
     #display-font("等宽", "Mono")
   ]
+  pagebreak()
 }
 
 #show: fonts-display-page()
