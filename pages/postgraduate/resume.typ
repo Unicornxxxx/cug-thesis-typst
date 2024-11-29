@@ -1,5 +1,4 @@
 #import "../../utils/style.typ": 字号, 字体
-#import "../../utils/indent.typ": indent
 
 // 作者简历
 #let postgraduate-resume(
