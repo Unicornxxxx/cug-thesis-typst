@@ -63,7 +63,7 @@
 
 // 文稿设置
 #show: doc
-// 字体展示测试页
+// 字体展示测试页，仅供测试使用，正式文档请注释掉
 #fonts-display-page()
 // 封面页
 #title-page()
