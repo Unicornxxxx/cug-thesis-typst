@@ -1,9 +1,9 @@
 // #import "@preview/anti-matter:0.0.2": anti-front-end
 #import "@preview/i-figured:0.2.4"
-#import "../utils/style.typ": 字号, 字体, show-cn-fakebold
+#import "../utils/style.typ": 字号, 字体
+#import "../utils/indent.typ": fake-par
 #import "../utils/custom-numbering.typ": custom-numbering
 #import "../utils/custom-heading.typ": heading-display, active-heading, current-heading
-#import "../utils/indent.typ": fake-par
 #import "../utils/unpairs.typ": unpairs
 #import "../utils/anonymous-info.typ": anonymous-info
 #import "@preview/indenta:0.0.3": fix-indent
@@ -127,10 +127,6 @@
   // 4.1 设置标题的 Numbering
   set heading(numbering: numbering)
   // 4.2 设置字体字号并加入假段落模拟首行缩进
-  let indent_hack = it => {
-    set par(spacing: 0em)
-    it; v(-1.35em); ";"
-  }
   show heading: it => {
     set par(spacing: 1.0em) // 单倍行距
     set text(
@@ -183,18 +179,3 @@
   counter(page).update(1)
   it
 }
-
-
-// 测试代码
-// #import "/template/thesis-info.typ": thesis-info 
-// #set text(fallback: false, lang: "zh", region: "CN")
-// #set page(margin: (x: 3cm, y: 3cm))
-// #show: mainmatter(
-//           twoside: false,
-//           display-header: true,
-//           anonymous: true,
-//           info: thesis-info,
-//           [测试文本],
-//           // fonts: 字体,
-//         )
-
