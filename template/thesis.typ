@@ -1,8 +1,10 @@
 // 在线包管理器模式
 // #import "@preview/modern-cug-thesis:0.2.1": documentclass, indent
-
 // 本地模式
-#import "..\lib.typ": documentclass, indent
+#import "../lib.typ": documentclass, indent
+
+// 本模板使用的字体是 Windows、MacOS 系统自带的，本地使用理论上不需要额外安装。
+// 如果是 Web App 上编辑，你需要上传 https://github.com/Rsweater/cug-thesis-typst/tree/main/fonts/Windows-SysFonts 里面所有字体，将 fonts 文件夹上传至模板创建的项目根目录即可，否则 CJK 字符可能无法正常显示。
 
 #let (
   // 布局函数
@@ -141,11 +143,17 @@
 
 该模板基于 Typst 设计，为方便 CUG 学子撰写毕业论文而生\~ 后面简单介绍下关于该模板的使用。使用该模板的好处：
 #v(0.5em) // 正文格式20pt，段前段后0，这里先定义半个字符的间距，为了美观。
-#set enum(indent: 2em) // 有序列表缩进2个字符长度
-1. 不需要担心 Word 样式排版用的不熟练，模板样式按照 CUG 学位论文写作规范自动生成已经预先设定，仅需专注论文内容即可。
-2. 拥有超快的渲染速度，不用担心后期一起渲染几十秒的问题（LaTex 老大哥不好意思哦\~）。
-3. 预定义盲审、单双面混合打印模式，无需后续手动调整。
-5. 支持 Typst Web APP 以及本地编辑模式，方便用户根据习惯自行挑选。
+// 有序列表缩进2个字符长度
+#enum(indent: 2em)[
+  不需要担心 Word 样式排版用的不熟练，模板样式按照 CUG 学位论文写作规范自动生成已经预先设定，仅需专注论文内容即可。
+][
+  拥有超快的渲染速度，不用担心后期一起渲染几十秒的问题（LaTex 老大哥不好意思哦\~）。
+][
+  预定义盲审、单双面混合打印模式，无需后续手动调整。
+][
+  支持 Typst Web APP 以及本地编辑模式，方便用户根据习惯自行挑选。
+]
+
 
 == 注意事项
 
@@ -272,16 +280,15 @@ $ F_n = floor(1 / sqrt(5) phi.alt^n) $
 === 2.2.1
 
 ==== 2.2.1.1
+测试一下
 
 === 2.2.2
 
 ==== 2.2.2.1
 @wang2022keypointbased @wang2022keypointbased @chen2023bsnet @xiao2023adnet
 === 2.2.3
-
 ==== 2.2.3.1
 === 2.2.4
-
 ==== 2.2.4.1
 
 == 2.3
