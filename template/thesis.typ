@@ -1,8 +1,8 @@
 // 在线包管理器模式
-#import "@preview/modern-cug-thesis:0.2.1": documentclass, indent
+// #import "@preview/modern-cug-thesis:0.2.1": documentclass, indent
 
 // 本地模式
-// #import "..\lib.typ": documentclass, indent
+#import "..\lib.typ": documentclass, indent
 
 #let (
   // 布局函数
