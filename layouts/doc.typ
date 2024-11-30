@@ -27,6 +27,10 @@
   show: show-cn-fakebold
   set text(lang: lang)
   set page(margin: margin)
+  show regex("[\p{sc=Hani} 。 ； ， ： “ ”（ ） 、 ？ 《 》] [\p{sc=Hani} 。 ； ， ： “ ”（ ） 、 ？ 《 》]"): it => {
+    let (a, _, b) = it.text.clusters()
+    a + b
+  }
 
   // show list: it => {
   //   it
