@@ -133,10 +133,10 @@
       info-style(anonymous-info(info.major)),
     )}),
     info-style("指导教师", align-type: "justify"),
-    info-style(info.supervisor.map(str => anonymous-info(str)).intersperse(" ").sum()),
+    info-style(info.supervisor.map(str => anonymous-info(str)).intersperse(h(1em)).sum()),
     ..(if info.supervisor-ii != () {(
       info-style("　"),
-      info-style(info.supervisor-ii.map(str => anonymous-info(str)).intersperse(" ").sum()),
+      info-style(info.supervisor-ii.map(str => anonymous-info(str)).intersperse(h(1em)).sum()),
     )} else { () }),
     info-style("培养单位", align-type: "justify"),
     info-style(anonymous-info(info.department.join("\n"))),
@@ -211,10 +211,10 @@
       info-style(anonymous-info(info.major-en)),
     )}),
     info-style("Supervisor: ", align-type: right),
-    info-style(info.supervisor-en.map(str => anonymous-info(str)).intersperse(" ").sum()),
+    info-style(info.supervisor-en.map(str => anonymous-info(str)).intersperse(h(0.66em)).sum()),
     ..(if info.supervisor-ii-en != () {(
       info-style("　"),
-      info-style(info.supervisor-ii-en.map(str => anonymous-info(str)).intersperse(" ").sum()),
+      info-style(info.supervisor-ii-en.map(str => anonymous-info(str)).intersperse(h(0.66em)).sum()),
     )} else { () }),
   ))
   v((9.54cm-(1.25cm+1.25cm+1.25cm+1.25cm+1.25cm))/2)
