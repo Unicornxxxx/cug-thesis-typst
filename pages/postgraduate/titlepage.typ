@@ -33,9 +33,6 @@
   if type(info.department) == str {
     info.department = info.department.split("\n")
   }
-  if type(info.department-en) == str {
-    info.department-en = info.department-en.split("\n")
-  }
   assert(type(info.submit-date) == datetime, message: "submit-date must be datetime.")
 
   // 内置辅助函数

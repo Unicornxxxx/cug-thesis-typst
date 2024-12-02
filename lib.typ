@@ -60,7 +60,7 @@
     author: "张三",
     author-en: "Ming Xing",
     department: "国家地理信息系统\n工程技术研究中心",
-    department-en: "National Engineering Research Center of Geographic Information System",
+    department-en: "",
     doctype: "master",
     degreetype: "professional", 
     is-equivalent: false, 
