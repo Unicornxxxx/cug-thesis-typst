@@ -10,7 +10,7 @@
   // 布局函数
   single-side, doc, mainmatter, mainmatter-end, appendix,
   // 页面函数
-  fonts-display-page, title-page, decl-page, resume-page, 
+  fonts-display-page, title-page, decl-page, resume-page, defence-page, 
   abstract, abstract-en, bilingual-bibliography,
   outline-page, list-of-figures-tables, notation, acknowledgement,
   // 其他
@@ -18,10 +18,10 @@
 ) = documentclass(
   anonymous: false,  // 盲审模式
   // 论文页面顺序：
-  // （封面，统一打印）、题名页（中文，英文）、声明页（原创性声明、导师承诺书、使用授权书）、简历页
+  // （封面，统一打印）、题名页（中文，英文）、声明页（原创性声明、导师承诺书、使用授权书）、简历页(、答辩委员会名单)
   // 中文摘要、Abstract、目录、图和表清单、正文、致谢、参考文献（、附录）。
   // 单面打印范围，自中文摘要后双面
-  single-side: ("title-page", "decl-page", "resume-page"),  
+  single-side: ("title-page", "decl-page", "resume-page", "defence-page"),  
   // 可自定义字体，先英文字体后中文字体，应传入「宋体」、「黑体」、「楷体」、「仿宋」、「等宽」
   // fonts: (楷体: ("Times New Roman", "FZKai-Z03S")),
   info: (
@@ -71,8 +71,6 @@
 
 // 文稿设置
 #show: doc
-// 字体展示测试页，仅供测试使用，正式文档请注释掉
-#fonts-display-page()
 // 封面页
 #title-page()
 // 声明页
@@ -84,7 +82,7 @@
     name:"张三", 
     gender: "男", 
     nation: "汉族", 
-    birthday: "1996-09-01",
+    birthday: "2000-01-29",
     native-place: "河南省鹤壁市",
     bachelor-time: "2018.09——2022.06",
     bachelor-school: "河南农业大学", 
@@ -92,26 +90,30 @@
     master-time: "2022.09——2025.06",
     master-school: "中国地质大学（武汉）",
     master-type: "工程硕士",
-    // doctor-time: "2025.09——2029.06",
-    // doctor-school: "最高学府",
-    // doctor-type: "测绘科学与技术博士",
-    // 2. 学术论文信息, 
+    // doctor-time: "",
+    // doctor-school: "",
+    // doctor-type: "",
+    // 2. 学术论文信息
     thesises: (
-      "X. X研究[J]. X学报，2004（1）：53-55.",
-      "X. X分析[J]. X技术，2005（5）：6-7.",
+      "1. X. X研究[J]. X学报，2004（1）：53-55.",
+      "2. X. X分析[J]. X技术，2005（5）：6-7.",
     ),
     // 3. 获奖、专利情况信息
     awards: (
-      "X. X. 江苏省科技进步奖三等奖.排名第2；",
-      "2022年度优秀毕业生",
-      "2025年度优秀研究生",
+      "1. X. X. 江苏省科技进步奖三等奖.排名第2；",
+      "2. 2022年度优秀毕业生",
+      "3. 2025年度优秀研究生",
     ),
     // 4. 研究项目信息
     projects: (
-      "X项目, 国家自然基金,项目编号：X,参加人员；",
+      "1. X项目, 国家自然基金,项目编号：X,参加人员；",
     )
   )
 )
+// 答辩委员会名单页，如不需要，注释掉即可
+#defence-page()
+// 字体展示测试页，仅供测试使用，正式文档请注释掉
+#fonts-display-page()
 
 // 中文摘要
 #abstract(
