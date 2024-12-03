@@ -105,6 +105,7 @@
     )
     )
   }
+  pagebreak(weak: true, to: if twoside { "odd" })
 }
 
 // #set page(margin: 3cm)
