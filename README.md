@@ -31,9 +31,7 @@
 
 本模板已上传 [Typst Universe](https://typst.app/universe)，您可以使用 Typst 的官方 Web App 进行编辑。只需要在 [Typst Web App](https://typst.app/) 中的 `Start from template` 里选择 `modern-cug-thesis`，即可从模板创建项目。
 
-或者，直接点击注册 [typst.app.universe.modern-cug-thesis](https://typst.app/app?template=modern-cug-thesis&version=0.2.1)，并开始编写你的论文~
-
-### 如果你经常使用 VS Code，也比较推荐使用这个~
+### 如果你经常使用 VS Code，比较推荐使用这个~
 
 **使用步骤**：安装 typst (命令行工具) → VS Code 插件(实时预览、智能提醒)，随后就可以准备开始项目了(打开项目文件、撰写论文内容)
 

@@ -44,8 +44,7 @@
     align-type: "default", // str(justify), str(default), left, right, center, 
   ) = {
     rect(
-      width: 100%, 
-      // inset: info-inset,
+      width: auto, 
       stroke: none,
       text(
         font: font, size: size, 
@@ -65,14 +64,16 @@
     size: 字号.一号,
     leading-scale: 1.2,
   ) = {
+    set align(center+horizon)
     rect(
-      width: 100%,
+      width: auto, 
       stroke: none,
       text(
         font: font, size: size,
         weight: weight,
         par(body, leading: size * leading-scale)
-      )) 
+      )
+    )
   }
   let docname-en = docname.with(font: 字体.宋体, size: 字号.三号, weight: "regular")
   let title = docname.with(font: 字体.黑体, size: 字号.二号)
@@ -82,15 +83,18 @@
 
   // 正式渲染
   // 中文题名页
-  block(height: 1.38cm, grid(
-    columns: (auto, auto, auto, auto), 
-    info-style("学校代码：", align-type: right),
+  grid(
+    align: (right, left, right, left),
+    rows: 1.38cm,
+    columns: (1fr, 1fr, 1fr, 1fr), 
+    info-style("学校代码:"),
     info-style(anonymous-info(info.school-code)),
-    info-style("研究生学号：", align-type: right),
+    info-style("研究生学号:"),
     info-style(anonymous-info(info.student-id)),
-  ))
-  block(height: 3.9cm, grid(
-    columns: auto, 
+  )
+  grid(
+    columns: 15.43cm, 
+    rows: 3.9cm,
     align: center,
     if info.degreetype == "academic" {
     if info.doctype == "doctor" { 
@@ -105,20 +109,21 @@
           docname(anonymous-info(info.school-name) + "\n硕士专业学位论文（非全日制）")
         }
     }
-  ))
+  )
   // 论文题目
-  block(height: 2.67cm, grid(
-    columns: auto, 
+  grid(
+    columns: 15.43cm, 
+    rows: 2.67cm,
     align: center,
     title(info.title.join("\n"), font: 字体.黑体, size: 字号.二号, leading-scale: 1.0),
-  ))
+  )
 
   // 学生与指导老师信息
   { 
     set align(center+horizon)
-    block(width: auto, height: auto,grid(
+    block(width: 15.43cm, height: auto, grid(
     align: (center, left),
-    columns: (3.99cm, 6cm),
+    columns: (3.99cm, auto),
     rows: (1.25cm, auto, 1.25cm, auto, auto),
     info-style("姓名", align-type: "justify"),
     info-style(anonymous-info(info.author)),
@@ -146,18 +151,20 @@
 
   {
     set align(center+bottom)
-    block(height: 2.67cm, grid(
-      columns: auto, 
+    grid(
+      rows: 2.67cm, 
+      columns: 15.43cm,   
       align: center,
       text(datetime-zh-display(info.submit-date, anonymous: anonymous), font: 字体.宋体, size: 字号.三号)
-    ))
+    )
   }
   pagebreak(weak: true, to: if twoside { "odd" })
  
 
   // 英文题名页
-  block(height: 1.64cm, grid(
-    columns: auto, 
+  grid(
+    rows: 1.64cm,
+    columns: 15.43cm,  
     align: center,
     if info.degreetype == "academic" {
     if info.doctype == "doctor" { 
@@ -176,20 +183,21 @@
         + "\nFor the Part-Time Master of Professional Degree of\n" + anonymous-info(info.degree-en))
         }
     }
-  ))
+  )
   v(2.73cm)
   //论文题目
-  block(height: 2.67cm, grid(
-    columns: auto, 
+  grid(
+    rows: 2.67cm, 
+    columns: 15.43cm, 
     align: center,
     title-en(info.title-en.join("\n"), leading-scale: 0.8),
-  ))
+  )
 
   // 学生与指导老师信息
   { 
     set align(center+horizon)
-    block(width: auto, height: auto, grid(
-    align: (center, left),
+    block(width: 15.43cm, height: auto, grid(
+    align: (right, left),
     columns: (6.99cm, auto),
     rows: (1.25cm, auto, 1.25cm, auto, auto),
     ..(if info.doctype == "doctor" {(
@@ -222,7 +230,8 @@
 
   {
     set align(center+bottom)
-    block(height: 3.55cm, grid(
+    grid(
+      rows: 3.55cm,
       columns: auto, 
       align: center,
       if anonymous {
@@ -230,7 +239,7 @@
       } else {
         address-en("China University of Geosciences\nWuhan 430074 P.R. China")
       }
-    ))
+    )
   }
   pagebreak(weak: true, to: if twoside { "odd" })
 }
