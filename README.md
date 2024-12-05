@@ -42,8 +42,8 @@
 2. **安装插件**：在 VS Code 中安装 [Tinymist Typst](https://marketplace.visualstudio.com/items?itemName=myriad-dreamin.tinymist)
 3. **准备项目文件**：
 
-   - **方法一：Clone Repo**: 使用命令 `git clone https://github.com/Rsweater/cug-thesis-typst.git` 将整个项目克隆到本地，寻找 `template/thesis.typ`。
-   - **方法二：使用 Typst Packages**：按下 `Ctrl + Shift + P` 打开命令界面，输入 `Typst: Show available Typst templates (gallery) for picking up a template` 打开 Tinymist 提供的 Template Gallery，然后从里面找到 `cug-thesis`，点击 `❤` 按钮进行收藏，以及点击 `+` 号，就可以创建对应的论文模板了，会出现 `ref.bib` 以及 `thesis.typ`。
+   - **方法一：Fork Repo**。去[项目页面](https://github.com/Rsweater/cug-thesis-typst)Fork ，随后使用命令 `git clone https://github.com/<you github username>/cug-thesis-typst.git` 将整个项目克隆到本地，寻找 `template/thesis.typ`。
+   - **方法二：使用 Typst Packages**。按下 `Ctrl + Shift + P` 打开命令界面，输入 `Typst: Show available Typst templates (gallery) for picking up a template` 打开 Tinymist 提供的 Template Gallery，然后从里面找到 `cug-thesis`，点击 `❤` 按钮进行收藏，以及点击 `+` 号，就可以创建对应的论文模板了，会出现 `ref.bib` 以及 `thesis.typ`。
 4. 打开开始编写论文内容~
 
 ## Q&A
@@ -63,6 +63,12 @@
 可以的。因为文档样式该模板已经提供，Typst 有标记模式（语法糖），使用起来就类似于 Markdown，完全不需要较多的代码功底。
 
 如果有 Markdown 基础，基本上可以直接上手~ 如果没有，跳回第一个问题，查看相关说明。
+
+### 为啥使用方法里面建议 Fork ？不是直接 Clone ？
+
+这样可以同步更新。模板刚刚发布，虽然基本没有什么问题了，可能会有细节调整或者代码优化。
+
+**建议：** 大家使用时，可以直接复制 `template` 文件夹，重命名为 `mythesis` （已经添加至 `.gitignore`），这样更新布局不会影响到个人的论文内容。
 
 ### Typst 是个啥玩意？相较于 LaTeX 有啥优势？
 
