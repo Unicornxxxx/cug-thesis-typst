@@ -57,7 +57,10 @@
   )
   v(字号.五号 * 3.0)
 
-  set text(font: 字体.宋体, size: 字号.小四, top-edge: (20pt-1.0em)*0.7, bottom-edge: -(20pt-1.0em)*0.3)
+  set text(
+  font: 字体.宋体, size: 字号.小四, 
+  top-edge: (20pt-1.0em)*0.7, bottom-edge: -(20pt-1.0em)*0.3
+  )
   // 1. 基本情况
   text(font: 字体.黑体, size: 字号.小四)[一、基本情况]
   par(leading: 1.0em, first-line-indent: 2em)[
@@ -89,4 +92,4 @@
   pagebreak(weak: true, to: if twoside { "odd" })
 }
 
-#postgraduate-resume()
+// #postgraduate-resume()

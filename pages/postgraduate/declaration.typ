@@ -151,5 +151,5 @@
 }
 
 // 测试代码
-// #import "/template/thesis-info.typ": thesis-info 
-// #show: postgraduate-declaration(info: thesis-info)
+// #import "../../mythesis/test-text.typ": mainmatter-parms
+// #show: postgraduate-declaration(info: mainmatter-parms.info)

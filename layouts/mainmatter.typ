@@ -6,7 +6,6 @@
 #import "../utils/custom-heading.typ": heading-display, active-heading, current-heading
 #import "../utils/unpairs.typ": unpairs
 #import "../utils/anonymous-info.typ": anonymous-info
-#import "@preview/indenta:0.0.3": fix-indent
 
 #let mainmatter(
   // documentclass 传入参数
@@ -15,8 +14,8 @@
   fonts: (:),
   info: (:),
   // 其他参数
-  leading: 1.0em,
-  spacing: 1.0em,
+  leading: 20pt-1.0em,
+  spacing: 20pt-1.0em,
   justify: true,
   first-line-indent: 2em,
   numbering: custom-numbering.with(first-level: "第一章 ", depth: 4, "1.1 "),
@@ -25,11 +24,11 @@
   // 标题字体与字号
   heading-font: auto,  // auto => 黑体
   heading-size: (字号.三号, 字号.四号, 字号.小四, 字号.小四),  // TIps: 自定义四级标题格式
-  heading-weight: ("bold", "bold", "regular", ),
-  heading-above: (2.0 * 1.0em, 1.0 * 1.0em, 1.0 * 1.0em, -(20pt - 1.0em)*0.5
-  ),  
-  heading-below: (2.0 * 1.0em, 1.0 * 1.0em, 1.0 * 1.0em, (20pt - 1.0em)*0.5
-  ),
+  heading-weight: ("bold", "bold", "regular", "regular"),
+  heading-above: (2.0 * 1.0em, 1.0 * 1.0em, 1.0 * 1.0em, (20pt-1.0em)*0.5
+  ),  // 页面最上方的距离压缩到 0em，四级标题使用固定值20pt
+  heading-below: (2.0 * 1.0em, 1.0 * 1.0em, 1.0 * 1.0em, (20pt-1.0em)*0.5
+  ), 
   heading-pagebreak: (true, false, false, ),
   heading-align: (center, center, left, ),
   // 页眉
@@ -52,7 +51,7 @@
   if (text-args == auto) {
     text-args = (
       font: fonts.宋体, size: 字号.小四, 
-      bottom-edge: (20pt - 1.0em)*1.0,
+      bottom-edge: "descender", top-edge: "ascender"
       // cjk-latin-spacing: auto, // 自动添加cjk与latin间距
     )
   }
@@ -131,19 +130,25 @@
   set heading(numbering: numbering)
   // 4.2 设置字体字号并加入假段落模拟首行缩进
   show heading: it => {
-    set par(spacing: 1.0em) // 单倍行距
+    set par(leading: 1.0em, spacing: 1.0em)
     set text(
+      bottom-edge: "descender", top-edge: "ascender",
       font: array-at(heading-font, it.level),
       size: array-at(heading-size, it.level),
       weight: array-at(heading-weight, it.level),
       ..unpairs(heading-text-args-lists
         .map((pair) => (pair.at(0), array-at(pair.at(1), it.level))))
     )
-    v(array-at(heading-above, it.level))
+    set block(
+      above: array-at(heading-above, it.level)*1.5,
+      below: array-at(heading-below, it.level)*1.5,
+    )
     it
-    // it
-    v(array-at(heading-below, it.level))
     fake-par
+  }
+  show heading.where(level: 1): it => {
+    v(array-at(heading-above, 1), weak: false)
+    it
   }
   // 4.3 标题居中与自动换页
   show heading: it => {
@@ -182,3 +187,12 @@
   counter(page).update(1)
   it
 }
+
+// test code
+// #import "../mythesis/test-text.typ": test-text, mainmatter-parms
+// #set text(fallback: false, lang: "zh", region: "CN")
+// #set page(margin: (x: 3cm, y: 3cm))
+// #mainmatter(
+//   ..mainmatter-parms,
+//   test-text
+// )
