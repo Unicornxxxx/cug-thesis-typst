@@ -177,8 +177,12 @@
         stack(
           dir: if calc.odd(here().page()) { rtl } else { ltr }, 
           page, 
-          1fr, if calc.odd(here().page()) { anonymous-info(info.school-name)+header-annotations } else {
-             info.author+"："+info.title.join("") }, 1fr
+          1fr, 
+          if calc.odd(here().page()) { 
+            anonymous-info(info.school-name)+header-annotations 
+          } else {
+            info.author+"："+info.title.join("") }, 
+          1fr
         )
         line(length: 100%, stroke: header-line-width)
       }, 
